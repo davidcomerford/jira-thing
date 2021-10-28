@@ -1,0 +1,14 @@
+{
+    "auth": {
+        "user": "user@example.com",
+        "apikey": "VeryVerySecretKey",
+        "accountid": "jira-account-id-is-tricky-to-find",
+        "server": "https://companyname.jira.com"
+    },
+    "customFields": {
+        "points": "customfield_10013",
+        "epic": "customfield_11590",
+        "sprint": "customfield_11090",
+        "customer": "customfield_16770"
+    }
+}
