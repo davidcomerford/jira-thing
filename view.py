@@ -46,16 +46,16 @@ class JiraUi(QMainWindow):
         self.tab_widget.descriptionInput.setPlainText(text)
 
     def updateComments(self, comments):
-        print(f"len(comments)={len(comments)}")
         self.tab_widget.issueCommentsTable.setRowCount(len(comments))
         row = 0
         if len(comments) == 0:
-            self.tab_widget.issueCommentsTable.setCellWidget(row,0, QLabel("No comment :)"))
+            self.tab_widget.issueCommentsTable.setRowCount(1)
+            self.tab_widget.issueCommentsTable.setCellWidget(row, 0, QLabel("No comment ☺"))
             print("Im here")
         else:
             for c in comments:
-                commentBody = c.author.displayName + " " + c.updated + "\n" + c.body
-                self.tab_widget.issueCommentsTable.setCellWidget(row,0, QLabel(commentBody))
+                commentBody = "<p><i>" + c.author.displayName + " " + c.updated + "</i></p>" + c.body +"<br>"
+                self.tab_widget.issueCommentsTable.setCellWidget(row, 0, QLabel(commentBody))
                 row = +1
         self.tab_widget.issueCommentsTable.resizeRowsToContents()
 
