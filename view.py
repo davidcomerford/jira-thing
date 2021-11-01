@@ -2,8 +2,8 @@
 from PyQt5 import QtCore
 from PyQt5 import QtGui
 import PyQt5
-from PyQt5.QtWidgets import QComboBox, QLineEdit, QRadioButton, QSpinBox, QTextEdit,QWidget,QToolBar,QStatusBar,QHBoxLayout,QTableWidget
-from PyQt5.QtWidgets import QLabel, QTableWidgetItem, QListWidget
+from PyQt5.QtWidgets import QComboBox, QLineEdit, QRadioButton, QSpinBox, QTextEdit,QWidget,QStatusBar,QHBoxLayout,QTableWidget
+from PyQt5.QtWidgets import QLabel, QListWidget
 from PyQt5.QtWidgets import QGridLayout, QVBoxLayout, QTabWidget
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtWidgets import QWidget
@@ -47,17 +47,20 @@ class JiraUi(QMainWindow):
         self.tab_widget.descriptionInput.setPlainText(text)
 
     def updateComments(self, comments):
-        self.tab_widget.issueCommentsTable.setRowCount(len(comments))
+        self.tab_widget.issueCommentsTable.setRowCount(0)
         row = 0
         if len(comments) == 0:
-            self.tab_widget.issueCommentsTable.setRowCount(1)
+            self.tab_widget.issueCommentsTable.insertRow(self.tab_widget.issueCommentsTable.rowCount())
             self.tab_widget.issueCommentsTable.setCellWidget(row, 0, QLabel("No comment ☺"))
-            print("Im here")
         else:
+            print(len(comments))
             for c in comments:
-                commentBody = "<p><i>" + c.author.displayName + " " + c.updated + "</i></p>" + c.body +"<br>"
+                #commentBody = "<p><i>" + c.author.displayName + " " + c.updated + "</i></p>" + c.body +"<br>"
+                commentBody = c.author.displayName + " " + c.updated + "\n" + c.body
+                self.tab_widget.issueCommentsTable.insertRow(self.tab_widget.issueCommentsTable.rowCount())
                 self.tab_widget.issueCommentsTable.setCellWidget(row, 0, QLabel(commentBody))
-                row = +1
+                row+=1
+
         self.tab_widget.issueCommentsTable.resizeRowsToContents()
 
     def updateLink(self, url):
@@ -106,6 +109,7 @@ class MyTabWidget(QWidget):
         self.issueKey = QLabel("____")
         self.issueList = QListWidget()
         self.issueCommentsTable = QTableWidget()
+        self.workLogTable = QTableWidget()
 
         # Create buttons
         self.epicsButton = QPushButton(text="Fetch")
@@ -174,6 +178,7 @@ class MyTabWidget(QWidget):
         self.tab2.layout2.addLayout(self.tab2.commentsLayout, 0, 1)
         self.tab2.commentsLayout.addWidget(self.issueKey)
         self.tab2.commentsLayout.addWidget(self.issueCommentsTable)
+        self.tab2.commentsLayout.addWidget(self.workLogTable)
 
         self.summaryInput.setFocus()
 
