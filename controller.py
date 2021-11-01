@@ -98,12 +98,12 @@ class JiraCtrl:
         self._view.populateIssueList(issueList)
 
     def _test(self, item):
-        print(f"issue {item.text()} was selected from list")
-        self._view.tab_widget.issueKey.setText(item.text())
-        
+        print(f"Issue {item.text()} was selected from list")
+
         for i in self.issues['issues']:
             if i['fields']['summary'] == item.text():
                 key = i['key']
+        self._view.tab_widget.issueKey.setText(key)
         comments = self._model.getComments(key)
         self._view.updateComments(comments)
 

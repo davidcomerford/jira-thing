@@ -1,6 +1,7 @@
 # library modules
 from PyQt5 import QtCore
 from PyQt5 import QtGui
+import PyQt5
 from PyQt5.QtWidgets import QComboBox, QLineEdit, QRadioButton, QSpinBox, QTextEdit,QWidget,QToolBar,QStatusBar,QHBoxLayout,QTableWidget
 from PyQt5.QtWidgets import QLabel, QTableWidgetItem, QListWidget
 from PyQt5.QtWidgets import QGridLayout, QVBoxLayout, QTabWidget
@@ -102,7 +103,7 @@ class MyTabWidget(QWidget):
         self.issueLinkOutput = QLabel("Not created yet")
 
         ## Tab 2
-        self.issueKey = QLabel("...")
+        self.issueKey = QLabel("____")
         self.issueList = QListWidget()
         self.issueCommentsTable = QTableWidget()
 
@@ -116,11 +117,11 @@ class MyTabWidget(QWidget):
         self.issueLinkOutput.setOpenExternalLinks(True)
         self.descriptionInput.toMarkdown()
         self.issueCommentsTable.setColumnCount(1)
-        # self.issueCommentsTable.setRowCount(5)
         self.issueCommentsTable.verticalHeader().setVisible(False)
         self.issueCommentsTable.horizontalHeader().setVisible(False)
         issueCommentsTableHeader = self.issueCommentsTable.horizontalHeader()
         issueCommentsTableHeader.setSectionResizeMode(0, QHeaderView.Stretch)
+        self.issueKey.setTextInteractionFlags(PyQt5.QtCore.Qt.TextSelectableByMouse)
 
         # Add input widgets to UI
         ## Summary
