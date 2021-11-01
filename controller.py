@@ -3,7 +3,7 @@ import sys
 import json
 from view import JiraUi
 from model import JiraModel
-from qt_material import apply_stylesheet
+#from qt_material import apply_stylesheet
 import pathlib
 
 class JiraCtrl:
@@ -70,10 +70,10 @@ class JiraCtrl:
             'summary': self._view.tab_widget.summaryInput.text(),
             'description': self._view.tab_widget.descriptionInput.toMarkdown(),
             'issuetype': {'name': 'Story'},
-            self.customFields['points']: self._view.tab_widget.pointsInput.value(),
-            self.customFields['epic']: self._view.tab_widget.epicInput.itemText(self._view.tab_widget.epicInput.currentIndex()),
-            self.customFields['sprint']: sprint,
-            self.customFields['customer']: [self._view.tab_widget.customerInput.itemText(self._view.tab_widget.customerInput.currentIndex())]
+            self.config['customFields']['points']: self._view.tab_widget.pointsInput.value(),
+            self.config['customFields']['epic']: self._view.tab_widget.epicInput.itemText(self._view.tab_widget.epicInput.currentIndex()),
+            self.config['customFields']['sprint']: sprint,
+            self.config['customFields']['customer']: [self._view.tab_widget.customerInput.itemText(self._view.tab_widget.customerInput.currentIndex())]
         }
         #customer = self._view.tab_widget.customerInput.itemText(self._view.tab_widget.customerInput.currentIndex())
 
