@@ -25,18 +25,22 @@ class JiraUi(QMainWindow):
         self._createStatusBar()
 
     def _createStatusBar(self):
+        """Adds status bar widget to the main window"""
         self.status = QStatusBar()
         self.status.showMessage("Idle")
         self.setStatusBar(self.status)
 
     def updateStatusBar(self, msg, timeout=1000):
+        """Updates the status with provided message"""
         self.status.showMessage(msg, timeout)
 
     def populateEpics(self, epics):
+        """Adds epics to the combobox"""
         self.tab_widget.epicInput.clear()
         self.tab_widget.epicInput.addItems(epics)
 
     def populateCustomers(self, customers):
+        """Adds customer names to the combobox"""
         self.tab_widget.customerInput.clear()
         self.tab_widget.customerInput.addItems(customers)
 
@@ -67,6 +71,7 @@ class JiraUi(QMainWindow):
         self.tab_widget.issueLinkOutput.setText(url)
 
     def setDefaultFocus(self):
+        """Set the default focus to be first input on window"""
         self.tab_widget.summaryInput.setFocus()
 
 
