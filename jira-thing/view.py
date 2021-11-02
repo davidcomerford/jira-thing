@@ -116,6 +116,7 @@ class MyTabWidget(QWidget):
         self.epicsButton = QPushButton(text="Fetch")
         self.clearButton = QPushButton(text="Clear")
         self.createButton = QPushButton(text="Create")
+        self.refreshIssuesButton = QPushButton(text="Refresh")
         self.commentButton = QPushButton(text="Comment")
 
         # Customize input widgets
@@ -130,7 +131,6 @@ class MyTabWidget(QWidget):
         self.issueKey.setTextInteractionFlags(PyQt5.QtCore.Qt.TextSelectableByMouse)
         self.commentInput.setFixedHeight(60)
 
-        # Add input widgets to UI
         ## Summary
         self.tab1.layout.addWidget(QLabel('Summary'), 0, 0)
         self.tab1.layout.addWidget(self.summaryInput, 0, 1)
@@ -172,11 +172,17 @@ class MyTabWidget(QWidget):
         self.tab1.buttonsLayout.addWidget(self.clearButton)
         self.tab1.buttonsLayout.addWidget(self.createButton)
 
-        # Tab2 - 
+        # Tab2
         self.tab2.layout2 = QGridLayout(self)
         self.tab2.setLayout(self.tab2.layout2)
-        self.tab2.layout2.addWidget(self.issueList,0,0)
 
+        ## Column 1: List of issues
+        self.tab2.issuesLayout = QVBoxLayout()
+        self.tab2.layout2.addLayout(self.tab2.issuesLayout, 0, 0)
+        self.tab2.issuesLayout.addWidget(self.issueList)
+        self.tab2.issuesLayout.addWidget(self.refreshIssuesButton)
+
+        ## Column 2: Comments
         self.tab2.commentsLayout = QVBoxLayout()
         self.tab2.layout2.addLayout(self.tab2.commentsLayout, 0, 1)
         self.tab2.commentsLayout.addWidget(self.issueKey)
@@ -184,7 +190,10 @@ class MyTabWidget(QWidget):
         self.tab2.commentsLayout.addWidget(self.commentInput)
         self.tab2.commentsLayout.addWidget(self.commentButton)
 
-        #self.tab2.commentsLayout.addWidget(self.workLogTable)
+        ## Column 3: Worklogs
+        self.tab2.workLogsLayout = QVBoxLayout()
+        self.tab2.layout2.addLayout(self.tab2.workLogsLayout, 0, 2)
+        self.tab2.workLogsLayout.addWidget(self.workLogTable)
 
         self.summaryInput.setFocus()
 
