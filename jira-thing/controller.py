@@ -33,7 +33,11 @@ class JiraCtrl:
         self.getIssueSummariesForIssueList()
 
     def _loadConfig(self):
-        # Config
+        """Loads configuration from json file
+
+        Raises:
+            Error: If config.json could not be found/loaded.
+        """
         current_directory = str(pathlib.Path(__file__).parent.absolute())
         with open(current_directory + '/config.json', 'r') as f:
             self.config = json.load(f)
@@ -46,6 +50,17 @@ class JiraCtrl:
         self._view.tab_widget.issueList.itemClicked.connect(self._test)
 
     def _resetFields(self):
+        """Resets all the input widgets to create new issue
+
+        Args:
+            None
+        
+        Returns:
+            None
+        
+        Raises:
+            None
+        """
         self._view.tab_widget.summaryInput.clear()
         self._view.tab_widget.pointsInput.setValue(1)
         self._setDescriptionTemplate()
