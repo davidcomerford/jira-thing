@@ -104,6 +104,7 @@ class MyTabWidget(QWidget):
         self.backlog = QRadioButton("Backlog")
         self.descriptionInput = QTextEdit()
         self.issueLinkOutput = QLabel("Not created yet")
+        self.commentInput = QTextEdit()
 
         ## Tab 2
         self.issueKey = QLabel("____")
@@ -115,6 +116,7 @@ class MyTabWidget(QWidget):
         self.epicsButton = QPushButton(text="Fetch")
         self.clearButton = QPushButton(text="Clear")
         self.createButton = QPushButton(text="Create")
+        self.commentButton = QPushButton(text="Comment")
 
         # Customize input widgets
         self.current_sprint.setChecked(True)
@@ -126,6 +128,7 @@ class MyTabWidget(QWidget):
         issueCommentsTableHeader = self.issueCommentsTable.horizontalHeader()
         issueCommentsTableHeader.setSectionResizeMode(0, QHeaderView.Stretch)
         self.issueKey.setTextInteractionFlags(PyQt5.QtCore.Qt.TextSelectableByMouse)
+        self.commentInput.setFixedHeight(60)
 
         # Add input widgets to UI
         ## Summary
@@ -178,7 +181,10 @@ class MyTabWidget(QWidget):
         self.tab2.layout2.addLayout(self.tab2.commentsLayout, 0, 1)
         self.tab2.commentsLayout.addWidget(self.issueKey)
         self.tab2.commentsLayout.addWidget(self.issueCommentsTable)
-        self.tab2.commentsLayout.addWidget(self.workLogTable)
+        self.tab2.commentsLayout.addWidget(self.commentInput)
+        self.tab2.commentsLayout.addWidget(self.commentButton)
+
+        #self.tab2.commentsLayout.addWidget(self.workLogTable)
 
         self.summaryInput.setFocus()
 
