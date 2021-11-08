@@ -55,7 +55,7 @@ class JiraUi(QMainWindow):
         row = 0
         if len(comments) == 0:
             self.tab_widget.issueCommentsTable.insertRow(self.tab_widget.issueCommentsTable.rowCount())
-            self.tab_widget.issueCommentsTable.setCellWidget(row, 0, QLabel("No comment ☺"))
+            self.tab_widget.issueCommentsTable.setCellWidget(row, 0, QLabel("No comments ☺"))
         else:
             print(len(comments))
             for c in comments:
