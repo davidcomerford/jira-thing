@@ -12,7 +12,7 @@ class JiraCtrl:
     descriptionTemplate = (f"\n\n"
                         "*Requirements:*\n"
                         "* \n\n"
-                        "*Success Criteria:*\n"
+                        "*Deliverables:*\n"
                         "* \n\n"
                         "*Ticket:* "
                         "\n\n")
