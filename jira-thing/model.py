@@ -47,11 +47,9 @@ class JiraModel():
         epicField = customFields['epic']
         sprintField = customFields['sprint']
         customerField = customFields['customer']
-        accountId = customFields['accountId']
 
         epicKey = self.getEpicKey(issue_dict[epicField])
         issue_dict.update({epicField: epicKey})
-        issue_dict.update({'assignee': {'accountId': accountId}})
 
         # Get and set the sprint if required
         if issue_dict[sprintField] == "current":

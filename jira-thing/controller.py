@@ -70,6 +70,7 @@ class JiraCtrl:
             'summary': self._view.tab_widget.summaryInput.text(),
             'description': self._view.tab_widget.descriptionInput.toMarkdown(),
             'issuetype': {'name': 'Story'},
+            'assignee': {'accountId': self.config['auth']['accountid']},
             self.config['customFields']['points']: self._view.tab_widget.pointsInput.value(),
             self.config['customFields']['epic']: self._view.tab_widget.epicInput.itemText(self._view.tab_widget.epicInput.currentIndex()),
             self.config['customFields']['sprint']: sprint,
@@ -78,9 +79,9 @@ class JiraCtrl:
         #customer = self._view.tab_widget.customerInput.itemText(self._view.tab_widget.customerInput.currentIndex())
 
         self._view.updateStatusBar('Creating issue', 5000)
-        issue = self._model.createIssue(issue_dict, self.customFields)
+        issue = self._model.createIssue(issue_dict, self.config['customFields'])
         self._model.addWorklog(issue.key)
-        linkAddress = 'https://example.atlassian.net/browse/' + issue.key
+        linkAddress = self.config['auth']['server'] + '/browse/' + issue.key
         self._view.updateLink('<a href='+ linkAddress +'>'+ linkAddress +'</a>')
         self._view.updateStatusBar('Created issue '+issue.key, 5000)
 
